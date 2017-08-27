@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <title>:::::::::Land Deed Registration Process::::::::</title>
+	<script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<script
+	  src="https://code.jquery.com/jquery-3.1.1.min.js"
+	  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	  crossorigin="anonymous"></script>
+	 <script>
+		window.addEventListener('load', function() {
+		  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+		  if (typeof web3 !== 'undefined') {
+		    // Use Mist/MetaMask's provider
+		    web3 = new Web3(web3.currentProvider); 
+		  } else {
+		    console.log('No web3? You should consider trying MetaMask!')
+		    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+		    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+		  }
+      var abi =[{"constant":false,"inputs":[{"name":"receiver","type":"address"},{"name":"propCode","type":"uint256"},{"name":"propType","type":"string"},{"name":"propValue","type":"uint256"}],"name":"mint","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"ownerAddress","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"uint256"}],"name":"ownerProprtyRef","outputs":[{"name":"propCode","type":"uint256"},{"name":"propType","type":"string"},{"name":"propValue","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"receiver","type":"address"},{"name":"propCode","type":"uint256"}],"name":"send","outputs":[],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"to","type":"address"},{"indexed":false,"name":"propCode","type":"uint256"},{"indexed":false,"name":"propType","type":"string"},{"indexed":false,"name":"propValue","type":"uint256"}],"name":"Sent","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"from","type":"address"},{"indexed":false,"name":"propCode","type":"uint256"}],"name":"propRegisteredEvent","type":"event"}];
+      var MyContract = web3.eth.contract(abi);
+	  //0x3711919e63d94c5dc3c669ad0002d97657b126d9
+	  //land 0x1a339b81f1b6de11ee58c5fa4c29d8b9c63e4508
+      var myContractInstance = MyContract.at('0xf699a237103cb77197ecebf818318d52adeb75cd');
+		  // Now you can start your app & access web3 freely:
+		  startApp(abi,MyContract,myContractInstance);
+		})
+  </script>
+  </head>
+  <body>
+   <div>
+        <h4>
+			Land Deed Registration in BlockChain
+        </h4>
+       
+		<div id="ownerAddressDiv">
+			<label id="ownerAddressSpan">Owner Address :</label> <input  maxlength="100" id='ownerAddress'>
+        </div>
+		<div id="propCodeDiv">
+			<label id="propCodeSpan">Property Code :</label> <input maxlength="20" id='propCode'>
+        </div>
+		<div id="propTypeDiv">
+			<label id="propTypeSpan">Property Type :</label> <input maxlength="20" id='propType'>
+        </div>
+		<div id="propValDiv">
+			<label id="propValSpan">Property Value :</label> <input maxlength="20" id='propVal'>
+        </div>
+       
+		<div>
+			<button id="propRegistrationSubmit" onclick='propRegistry()' ><label id="buttonText">Property Registration</label></button>
+		</div>
+		<br><br>
+		<div align="center" id="propMsg"></div>
+		<hr/>
+		
+		<h4>
+			Send Property to Buyer, failed otherwise
+		</h4>
+		<div id="receiverAddDiv">
+			<label id="receiverAddSpan">Receiver Address :</label> <input  maxlength="100" id='receiverAdd'>
+        </div>
+        <div id="propToSendDiv">
+			<label id="propToSendSpan"> Property Code : </label><input  maxlength="20" id='propToSend'>
+        </div>
+        <button id="submit" onclick='sendProperty()'><label id="buttonTextSumbit">Submit</label></button>
+      </div>
+	  <hr/>
+		<p id="eventsGeneratedForSentProperty">Events generated for the property sent:
+			
+			<div align="center" id="sentMsg"></div>
+		</p>
+      <hr/>
+      <div id="checkBalAddDiv">
+		<label id="checkBalAddSpan">Find Property by address: </label><input maxlength="100" id='checkProp'>
+		<label id="propCodeSpan">Property Code: </label><input maxlength="100" id='propCd'>
+		<button onclick='checkPropertyBalance()' id="checkBalanceButton"><label id="buttonTextBalance">Property Lookup</label></button>
+	  <p><label id="checkBalAddSpan">Property Details:</label> <label id='balanceCallback'></label>
+			
+		</p>
+	  </div>
+		
+		<h4>Let's fetch all the events of Mint coin
+		</h4>
+		<div>
+			Address(Enter, if you want to fetch the history of specific address, leave blank otherwise):
+			<input id='AddForFetchinEvents'>
+		</div>
+		<hr/>
+		<button onclick='handleAllMintCoinEvent()'>Fetch All Events</button>
+		<hr/>
+		<p><h4>Mint Coin Events:</h4>
+			<h3 id='MintCoinEvents'></h3>
+		</p>
+		<hr/>
+		
+<script type="text/javascript" src='app.js'>
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,69 @@
+
+pragma solidity ^0.4.0;
+
+//Create contract to register and transfer property..Purpose of the module is to regaister/buy/sell a property. 
+contract DeviceReg {
+   //Create Prporty entity to hold all property information 
+  struct Device {
+        uint deviceCode;
+        string deviceType;
+        string deviceDesc;
+        string devManDate;
+        string devManCompany;
+        string remarks;
+        uint deviceCost;
+   
+    }
+   //Owner digital addess.
+    address public ownerAddress;
+    //Owner,Property reference.
+    mapping(address => mapping(uint => Device)) public ownerDeivceRef;
+   //Event to be triggered when property is transfered from owner to seller
+    event Sent(address from, address to, uint deviceCode,string deviceType,string deviceDesc,string devManDate,string devManCompany,uint256 deviceCost,string remarks);
+    //Event to be triggered when property is registered
+    event deviceRegisterEvent(address from, uint deviceCode);
+    
+    
+    
+    //Call constructer to set the owner address
+    function LandDeed()
+    {
+        
+        ownerAddress= msg.sender;
+    }
+    
+    
+   //Owner should register there property first using mint function
+    function mint(address receiver,uint deviceCode,string deviceType,string deviceDesc,string devManDate,string devManCompany,uint256 deviceCost,string remarks) {
+        if (msg.sender != ownerAddress) return; 
+      
+        ownerDeivceRef[receiver][deviceCode].deviceCode=deviceCode;
+        ownerDeivceRef[receiver][deviceCode].deviceType=deviceType;
+        ownerDeivceRef[receiver][deviceCode].deviceDesc=deviceDesc;
+        ownerDeivceRef[receiver][deviceCode].devManDate=devManDate;
+        ownerDeivceRef[receiver][deviceCode].devManCompany=devManCompany;
+        ownerDeivceRef[receiver][deviceCode].deviceCost=deviceCost;
+        ownerDeivceRef[receiver][deviceCode].remarks=remarks;
+        deviceRegisterEvent(ownerAddress,ownerDeivceRef[receiver][deviceCode].deviceCode);
+       
+        
+    }
+    //Owner send property to buyer..Double spending restricted
+   function send(address receiver,uint deviceCode) {
+      
+        ownerDeivceRef[receiver][deviceCode].deviceCode=ownerDeivceRef[msg.sender][deviceCode].deviceCode;
+        ownerDeivceRef[receiver][deviceCode].deviceType=ownerDeivceRef[msg.sender][deviceCode].deviceType;
+        ownerDeivceRef[receiver][deviceCode].deviceDesc=ownerDeivceRef[msg.sender][deviceCode].deviceDesc;
+        ownerDeivceRef[receiver][deviceCode].devManDate=ownerDeivceRef[msg.sender][deviceCode].devManDate;
+        ownerDeivceRef[receiver][deviceCode].devManCompany=ownerDeivceRef[msg.sender][deviceCode].devManCompany;
+        ownerDeivceRef[receiver][deviceCode].deviceCost=ownerDeivceRef[msg.sender][deviceCode].deviceCost;
+        ownerDeivceRef[receiver][deviceCode].remarks=ownerDeivceRef[msg.sender][deviceCode].remarks;
+        
+        
+        
+        delete(ownerDeivceRef[msg.sender][deviceCode]); //Double spending restricted here
+        Sent(msg.sender, receiver, deviceCode,ownerDeivceRef[receiver][deviceCode].deviceType, ownerDeivceRef[receiver][deviceCode].deviceDesc,ownerDeivceRef[receiver][deviceCode].devManDate,ownerDeivceRef[receiver][deviceCode].devManCompany,ownerDeivceRef[receiver][deviceCode].deviceCost,ownerDeivceRef[receiver][deviceCode].remarks);
+     
+    
+}
+}

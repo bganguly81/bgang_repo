@@ -1,0 +1,282 @@
+#ownerAddress {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    border-radius: 5px;
+}
+#propCode {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#propType {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 12px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#propVal {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 16px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#ownerAddressDiv {
+    margin-left: 406px;
+}
+#propCodeDiv {
+    margin-left: 410px;
+}
+#propTypeDiv {
+    margin-left: 31%
+}
+#propValDiv {
+    margin-left: 399px;
+}
+#ownerAddressSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#propCodeSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#propTypeSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#propValSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+h4 {
+    text-transform: uppercase;
+    margin-left: 29%;
+    font-family: Georgia, serif;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+}
+#propRegistrationSubmit {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 580px;
+}
+#buttonText {
+    color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#eventsGeneratedForSentProperty {
+    font-family: Georgia, serif;
+    font-size: 12px;
+    color: #2c5285;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 50px;
+}
+#eventsGeneratedForMintProperty {
+    font-family: Georgia, serif;
+    font-size: 12px;
+    color: #2c5285;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 50px;
+}
+#submit {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 630px;
+}
+#buttonTextSumbit {
+    color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+hr {
+    color: #1a7571;
+}
+#receiverAddSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#receiverAdd {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    border-radius: 5px;
+}
+#receiverAddDiv {
+    margin-left: 385px;
+}
+#propToSendDiv {
+    margin-left: 413px;
+}
+#propToSendSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#propToSend {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+#checkBalAddDiv {
+    margin-left: 290px;
+}
+#checkBalAddSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#checkBalAdd {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#checkBalanceButton {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-left: 12px;
+}
+#buttonTextBalance {
+    color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#balance {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-left: 482px;
+}
+#AddForFetchinEventsDiv {} #AddForFetchinEventsSpan {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: #1a7571;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+#AddForFetchinEvents {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#buttonTexthandleAllMintCoinEvent {
+    color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#handleAllMintCoinEvent {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 500px;
+}
+#propMsg{
+   color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#balanceCallback{
+   color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
