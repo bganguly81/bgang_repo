@@ -1,9 +1,9 @@
 
 pragma solidity ^0.4.0;
 
-//Create contract to register and transfer property..Purpose of the module is to regaister/buy/sell a property. 
+//Create contract to register and transfer medical device..Purpose of the module is to register,transfer and search device. 
 contract DeviceReg {
-   //Create Prporty entity to hold all property information 
+   //Create Device entity to hold all device information 
   struct Device {
         uint deviceCode;
         string deviceType;
@@ -16,7 +16,7 @@ contract DeviceReg {
     }
    //Owner digital addess.
     address public ownerAddress;
-    //Owner,Property reference.
+    //Owner,Device reference.
     mapping(address => mapping(uint => Device)) public ownerDeivceRef;
    //Event to be triggered when property is transfered from owner to seller
     event Sent(address from, address to, uint deviceCode,string deviceType,string deviceDesc,string devManDate,string devManCompany,uint256 deviceCost,string remarks);
@@ -26,14 +26,14 @@ contract DeviceReg {
     
     
     //Call constructer to set the owner address
-    function LandDeed()
+    function DeviceReg()
     {
         
         ownerAddress= msg.sender;
     }
     
     
-   //Owner should register there property first using mint function
+   //Owner should register there device first using mint function
     function mint(address receiver,uint deviceCode,string deviceType,string deviceDesc,string devManDate,string devManCompany,uint256 deviceCost,string remarks) {
         if (msg.sender != ownerAddress) return; 
       
@@ -48,7 +48,7 @@ contract DeviceReg {
        
         
     }
-    //Owner send property to buyer..Double spending restricted
+    //Owner send device to buyer..Double spending restricted
    function send(address receiver,uint deviceCode) {
       
         ownerDeivceRef[receiver][deviceCode].deviceCode=ownerDeivceRef[msg.sender][deviceCode].deviceCode;
