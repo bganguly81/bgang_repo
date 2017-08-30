@@ -1,0 +1,538 @@
+#upperDiv {
+    border: 1px solid #1a7571;
+    height: 300px;
+    width: 1000px;
+    margin-left: 160px;
+    border-radius: 7px;
+}
+#middleDiv {
+    border: 1px solid #1a7571;
+    height: 170px;
+    width: 1000px;
+    margin-left: 160px;
+    margin-top:10px;
+    border-radius: 7px;
+}
+#middleplusoneDiv{
+    border: 1px solid #1a7571;
+    height: 100px;
+    width: 1000px;
+    margin-left: 160px;
+    margin-top:10px;
+    border-radius: 7px;
+}
+#bottomDiv{
+       border: 1px solid #1a7571;
+    height: 140px;
+    width: 1000px;
+    margin-left: 160px;
+    margin-top:10px;
+    border-radius: 7px;
+}
+#leftDiv {
+    float: left;
+    margin-left: 20px;
+}
+#rightDiv {
+    margin-left: 40px;
+}
+#deviceAddress {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+#deviceCode {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 11px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceType {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceDesc {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceManDate {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceManComp {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceCost {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#devManDate {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#devManComp {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#remarks {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceAddressDiv {
+    margin-left: 40px;
+}
+#deviceCodeDiv {
+    margin-left: 145px;
+}
+#deviceTypeDiv {
+    margin-left: 150px;
+}
+#deviceDescDiv {
+    margin-left: 80px;
+}
+#deviceCostDiv {
+    margin-left: 570px;
+}
+#deviceDtDiv {
+    margin-left: 540px;
+}
+#deviceManDiv {
+    margin-left: 499px;
+}
+#deviceRemDiv {
+    margin-left: 580px;
+}
+#ownerAddressSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#deviceSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#propTypeSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#propValSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+h4 {
+    text-transform: uppercase;
+    margin-left: 29%;
+    font-family: Georgia, serif;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+}
+h2 {
+    text-transform: uppercase;
+    font-family: Georgia, serif;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+}
+#medDeviceRegHeader{
+     text-transform: uppercase;
+    margin-left: 350px;
+    font-family: Georgia, serif;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+
+}
+#sendDeviceToBuyerHeader{
+ text-transform: uppercase;
+    margin-left: 390px;
+    font-family: Georgia, serif;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+
+}
+#eventsGeneratedForSentDevice {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    
+    margin-left: 90px;
+}
+#eventsGeneratedForMintProperty {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    
+    margin-left: 50px;
+}
+#submit {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 468px;
+}
+#buttonTextSumbit {
+    color: #1c6389;
+    font-weight: bold;
+}
+hr {
+    color: #1a7571;
+}
+#receiverAddSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#receiverAdd {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    border-radius: 5px;
+}
+#receiverAddDiv {
+    margin-left: 120px;
+    float: left;
+    margin-right: 30px;
+}
+#deviceToSendDiv {
+    margin-left: 5px;
+}
+#deviceToSendSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+#deviceToSend {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+#checkBalAddDiv {
+    margin-left: 75px;
+    margin-top:7px;
+}
+#checkBalAddSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-left:5px;
+
+}
+#deviceCodeSpan {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-left:22px;
+}
+
+#checkBalAdd {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 13px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+#checkBalanceButton {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 448px;
+}
+#buttonTextBalance {
+    color: #1c6389;
+    font-weight: bold;
+}
+#balance {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-left: 482px;
+}
+#AddForFetchinEventsDiv {
+margin-top:50px;
+float:left;
+} 
+
+
+#AddForFetchinEventsSpan {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: #1a7571;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+#AddForFetchinEvents {
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 230px;
+    margin-top:5px;
+    border-radius: 5px;
+}
+#buttonTexthandleAllMintCoinEvent {
+    color: #1c6389;
+    font-weight: bold;
+
+}
+#handleAllMintCoinEventButton{
+margin-left:40px;
+  background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+
+}
+#handleAllMintCoinEvent {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 500px;
+}
+#propMsg {
+    color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#balanceCallback {
+    color: #1c6389;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#deviceDataTable {
+    margin-top: 5px;
+    margin-left: 30px;
+    width: 400px;
+margin-bottom:10px;
+}
+.tableData {
+    padding: 5px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+}
+table td, table th {
+    border: 1px solid #1a7571;
+}
+#checkDevice{
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 11px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+#deviceCd{
+    padding: 0;
+    height: 25px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 2px solid #cdcdcd;
+    border-color: rgba(0, 0, 0, .15);
+    background-color: white;
+    font-size: 16px;
+    margin-left: 11px;
+    margin-top: 10px;
+    border-radius: 5px;
+
+} 
+#deviceRegistrationSubmit {
+    background: #d7e8e7;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 448px;
+}
+#buttonText {
+    color: #1c6389;
+    font-weight: bold;
+}
+.ui-dialog-titlebar{
+    
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+ 
+}
+.ui-widget-overlay {
+   background:    #1c2833 url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+   opacity: .45;
+   filter: Alpha(Opacity=45);
+}
+#sentMsg {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-top:15px;
+    margin-left: 90px;
+}
+#deviceMsg {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: #1a7571;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    margin-top:15px;
+    margin-left: 90px;
+}

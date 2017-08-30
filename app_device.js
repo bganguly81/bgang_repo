@@ -22,11 +22,23 @@ function deviceRegistry(){
 		if(err){
 			console.log(err);
 		} else {
-			document.getElementById('deviceMsg').innerHTML = "Device registered for owner address ::"+ " " +deviceAddress;
+			//document.getElementById('deviceMsg').innerHTML = "Device registered for owner address ::"+ " " +deviceAddress;
 			console.log(res);
 		}
 	});
     //document.getElementById('propMsg').innerHTML = "Propery registered for address ::"+""+ownerAdd;
+	var event = myContractInstance.deviceRegisterEvent({},function(error, result) {
+		  if (!error) {
+			    var msg = "Property registered for owner address "+ result.args.from;
+			    document.getElementById('deviceMsg').innerHTML = ""+msg;
+			    console.log(msg);
+
+		  }
+		  else {
+			  console.error(error);
+		  } 
+	});
+	
 }
 
 function sendDevice(){
@@ -42,7 +54,7 @@ function sendDevice(){
 	});
  var event = myContractInstance.Sent({},function(error, result) {
 		  if (!error) {
-			    var msg = "Property transfered to " +"buyer address "+ result.args.to;
+			    var msg = "Device transfered to " +"buyer address "+ result.args.to;
 			    document.getElementById('sentMsg').innerHTML = ""+msg;
 			    console.log(msg);
 
@@ -60,7 +72,20 @@ function srchDevice(){
 		if(err){
 			console.log(err);
 		} else {
-			document.getElementById('balanceCallback').innerHTML = ""+"Device Code::"+res[0]+" "+"Device Type::"+" "+res[1]+" "+"Device Description::"+" "+res[2];
+			//document.getElementById('balanceCallback').innerHTML = ""+"Device Code::"+res[0]+" "+"Device Type::"+" "+res[1]+" "+"Device Description::"+" "+res[2];
+			if(null == res)
+			{
+				document.getElementById('balanceCallback').innerHTML="No device details found!!!!";
+			}
+			document.getElementById('deviceAddId1').innerHTML=checkDevice;
+			document.getElementById('deviceCodeId1').innerHTML=res[0];
+			document.getElementById('deviceTypeId1').innerHTML=res[1];
+			document.getElementById('deviceDescId1').innerHTML=res[2];
+			document.getElementById('deviceCostId1').innerHTML=res[6];
+			document.getElementById('deviceManuDatefId1').innerHTML=res[3];
+			document.getElementById('deviceManuCompfId1').innerHTML=res[4];
+			document.getElementById('deviceremarksId1').innerHTML=res[5];
+		
 			console.log(res);
 		}
 	});
