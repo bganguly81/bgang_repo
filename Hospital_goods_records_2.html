@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>:::::::::Medical Device Tracker in SCM::::::::</title>
+      <script src="http://rawgit.com/ethereum/web3.js/0.16.0/dist/web3.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+      <link rel="stylesheet" type="text/css" href="stylesheet_device_1.css">
+      <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+      <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+      <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script> 
+      <script>
+          window.addEventListener('load', function() {
+              // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+              if (typeof web3 !== 'undefined') {
+                  // Use Mist/MetaMask's provider
+                  web3 = new Web3(web3.currentProvider);
+              } else {
+                  console.log('No web3? You should consider trying MetaMask!')
+                      // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+                 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+              } 
+              var abi = [{"constant":false,"inputs":[{"name":"receiver","type":"address"},{"name":"deviceCode","type":"uint256"},{"name":"deviceType","type":"string"},{"name":"deviceDesc","type":"string"},{"name":"devManDate","type":"string"},{"name":"devManCompany","type":"string"},{"name":"deviceCost","type":"uint256"},{"name":"remarks","type":"string"}],"name":"mint","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"ownerAddress","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"receiver","type":"address"},{"name":"deviceCode","type":"uint256"}],"name":"send","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"uint256"}],"name":"ownerDeivceRef","outputs":[{"name":"deviceCode","type":"uint256"},{"name":"deviceType","type":"string"},{"name":"deviceDesc","type":"string"},{"name":"devManDate","type":"string"},{"name":"devManCompany","type":"string"},{"name":"remarks","type":"string"},{"name":"deviceCost","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":true,"name":"deviceCode","type":"uint256"},{"indexed":false,"name":"deviceType","type":"string"},{"indexed":false,"name":"deviceDesc","type":"string"},{"indexed":false,"name":"devManDate","type":"string"},{"indexed":false,"name":"devManCompany","type":"string"},{"indexed":false,"name":"deviceCost","type":"uint256"},{"indexed":false,"name":"remarks","type":"string"}],"name":"Sent","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":false,"name":"deviceCode","type":"uint256"}],"name":"deviceRegisterEvent","type":"event"}];
+              var MyContract = web3.eth.contract(abi);
+              //0x3711919e63d94c5dc3c669ad0002d97657b126d9
+              //land 0x1a339b81f1b6de11ee58c5fa4c29d8b9c63e4508
+              //device 0xc7d16f92cecb831f47432b170e539246cbba922a
+              //var myContractInstance = MyContract.at('0xc7d16f92cecb831f47432b170e539246cbba922a');
+			  var myContractInstance = MyContract.at('0x532c45c5927d5fde459ffc22fabdc2a3549369cd');
+              // Now you can start your app & access web3 freely:
+              startApp(abi, MyContract, myContractInstance);
+          }) 
+      </script>
+      <script type="text/javascript">
+         $(document).ready(function() {
+		 
+		 $("#devManDate").datepicker({
+			maxDate: new Date(),
+			showButtonPanel: true,
+			beforeShow: function(input) {
+				setTimeout(function() {
+					var buttonPane = $(input)
+						.datepicker("widget")
+						.find(".ui-datepicker-buttonpane");
+
+					var btn = $('<button type="button" class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</button>');
+					btn
+						.unbind("click")
+						.bind("click", function() {
+							$.datepicker._clearDate(input);
+						});
+
+					btn.appendTo(buttonPane);
+
+				}, 1);
+			}
+		});
+		 
+		var isValid = false;
+
+		$('#deviceRegistrationSubmit').click(function(e) {
+				isValid = true;
+				$('#deviceAddress, #deviceCode, #deviceType, #deviceDesc, #deviceCost,#devManDate,#devManComp,#remarks').each(function() {
+					if ($.trim($(this).val()) == '') {
+						isValid = false;
+						$(this).css({
+							"border": "2px solid red",
+							"background": "#FFCECE"
+						});
+
+					} else {
+						//deviceRegistry();
+						//alert(isValid);
+						$(this).css({
+							"border": "",
+							"background": ""
+						});
+					}
+				});
+				if(isValid ==true)
+				{
+				  deviceRegistry();
+				 //alert(isValid);
+				}
+
+			});
+
+		$('#submit').click(function(e) {
+				isValid = true;
+				$('#receiverAdd,#deviceToSend').each(function() {
+					if ($.trim($(this).val()) == '') {
+						isValid = false;
+						$(this).css({
+							"border": "2px solid red",
+							"background": "#FFCECE"
+						});
+
+					} else {
+						//sendDevice();
+						$(this).css({
+							"border": "",
+							"background": ""
+						});
+					}
+				});
+				if(isValid ==true)
+				{
+				  sendDevice();
+				 //alert(isValid);
+				}
+			});
+		
+		$('#checkBalanceButton').click(function(e) {
+				isValid = true;
+				$('#checkDevice, #deviceCd').each(function() {
+					if ($.trim($(this).val()) == '') {
+						isValid = false;
+						$(this).css({
+							"border": "2px solid red",
+							"background": "#FFCECE"
+						});
+
+					} else {
+						
+						//srchDevice();
+						$(this).css({
+							"border": "",
+							"background": ""
+						});
+					}
+					
+				});
+				if(isValid ==true)
+				{
+				  srchDevice();
+				  $("#popup").dialog({
+							resizable: false,
+							height: "auto",
+							width: "auto",
+							modal: true,
+							title: "Device Details"
+
+						});
+
+						$('#deviceDataTable').DataTable();
+				 //alert(isValid);
+				}
+			});
+
+		if (isValid === false) {
+			console.log(isValid);
+			$('#deviceAddress, #deviceCode, #deviceType, #deviceDesc, #deviceCost,#devManDate,#devManComp,#remarks,#receiverAdd,#deviceToSend,#checkDevice,#deviceCd').click(function() {
+				$(this).css({
+					"border": "",
+					"background": ""
+				});
+
+
+			});
+		}
+		
+		
+			
+		$("#deviceCost,#deviceCode,#deviceToSend,#deviceCd").keydown(function (e) {
+			// Allow: backspace, delete, tab, escape, enter and .
+			if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+				 // Allow: Ctrl+A, Command+A
+				(e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+				 // Allow: home, end, left, right, down, up
+				(e.keyCode >= 35 && e.keyCode <= 40)) {
+					 // let it happen, don't do anything
+					 return;
+			}
+			// Ensure that it is a number and stop the keypress
+			if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+				e.preventDefault();
+			}
+		});
+		
+		$('#handleAllMintCoinEventButton').click(function(e) {
+				 
+				 
+				  var rowCount = $('#displayMintCoinEventsTableBody tr').length;
+				  if(rowCount>0)
+				  {
+					 console.log(rowCount);
+					 $('#displayMintCoinEventsTableBody tr').remove();
+				  }
+				 	
+				  
+				 handleAllMintCoinEvent();
+				   //alert(isBoolean);
+				   //if(isBoolean==true){
+				  // $.when( handleAllMintCoinEvent() ).done(function() {
+				  $("#displayMintCoinEventsPopup").dialog({
+							resizable: false,
+							height: "auto",
+							width: "auto",
+							modal: true,
+							title: "All Event Details"
+						     
+						});
+						//});
+						//}
+				  //$('#displayMintCoinEventsTable').DataTable();
+				  /*setTimeout(function() {
+						console.log('first 10 secs');
+						$('#displayMintCoinEventsTable').DataTable();	
+											
+					}, 15000); */
+				
+				/*  $.when( handleAllMintCoinEvent() ).done(function() {
+					   $('#displayMintCoinEventsTable').DataTable();
+				}); */
+				/*$.when().then(function( x ) {
+				  alert( "I fired immediately" );
+				}); */
+		
+				 //alert(isValid);
+				
+			});
+	
+});          
+                   
+         
+      </script> 
+   </head>
+   <body>
+      <div>
+      <div id="header">
+         <center>
+            <h2>Medical Device Tracker in BlockChain</h2>
+         </center>
+      </div>
+      <div id="upperDiv">
+         <h4 id="medDeviceRegHeader">
+            Medical Device Registration
+         </h4>
+         <div id="leftDiv">
+            <div id="deviceAddressDiv">
+               <label id="deviceSpan">Device Address(Owner) :</label>
+               <input maxlength="100" id='deviceAddress'>
+            </div>
+            <div id="deviceCodeDiv">
+               <label id="deviceSpan">Device Code :</label>
+               <input maxlength="20" id='deviceCode'>
+            </div>
+            <div id="deviceTypeDiv">
+               <label id="deviceSpan">Device Type :</label>
+               <input maxlength="20" id='deviceType'>
+            </div>
+            <div id="deviceDescDiv">
+               <label id="deviceSpan">Description/Model :</label>
+               <input maxlength="20" id='deviceDesc'>
+            </div>
+         </div>
+         <div id="rightDiv">
+            <div id="deviceCostDiv">
+               <label id="deviceSpan">Device Cost(in $):</label>
+               <input maxlength="20" id='deviceCost'>
+            </div>
+            <div id="deviceDtDiv">
+               <label id="deviceSpan">Manufactured Date:</label>
+               <input maxlength="20" id='devManDate' readOnly>
+            </div>
+            <div id="deviceManDiv">
+               <label id="deviceSpan">Manufacturing Company:</label>
+               <input maxlength="20" id='devManComp'>
+            </div>
+            <div id="deviceRemDiv">
+               <label id="deviceSpan">Remarks(If any):</label>
+               <input maxlength="20" id='remarks'>
+            </div>
+         </div>
+         <div>
+            <button id="deviceRegistrationSubmit" class="search" >
+            <label id="buttonText">Register Device</label>
+            </button>
+			
+         </div>
+		 <div align="center" id="deviceMsg"></div>
+      </div>
+      
+      <div id="middleDiv">
+         <h4 id="sendDeviceToBuyerHeader">
+            Send Device to Buyer
+         </h4>
+         <div id="receiverAddDiv">
+            <label id="receiverAddSpan">Receiver Address :</label>
+            <input maxlength="100" id='receiverAdd'>
+         </div>
+         <div id="deviceToSendDiv">
+            <label id="deviceToSendSpan"> Device Code : </label>
+            <input maxlength="20" id='deviceToSend'>
+         </div>
+         <button id="submit" >
+            <!--onclick='sendDevice()' -->
+            <label id="buttonTextSumbit">Submit</label>
+         </button>
+         <!--<p id="eventsGeneratedForSentDevice">Events generated for the Device sent:-->
+         <div align="center" id="sentMsg"></div>
+         <!--</p>-->
+      </div>
+      <div id="middleplusoneDiv">
+	   <h4 id="lowDeviceRegHeader">
+            Search a Device
+         </h4>
+         <div id="checkBalAddDiv">
+            <label id="checkBalAddSpan">Find Device by address: </label>
+            <input maxlength="100" id='checkDevice'>
+            <label id="deviceCodeSpan">Device Code: </label>
+            <input maxlength="100" id='deviceCd'>
+         </div>
+         <button  id="checkBalanceButton">
+         <label id="buttonTextBalance">Device Lookup</label>
+         </button>
+		 <label id='balanceCallback'></label>
+         <!-- <p id="checkBalAddSpanPara">
+            <label id="checkBalAddSpan">Device Details:</label>
+            <label id='balanceCallback'></label>
+            </p> -->
+      </div>
+     
+         <!-- <table id="deviceDataTable">
+            <thead>
+               <tr>
+                  <th class="tableData">
+                     Device Address(Owner)
+                  </th>
+                  <th class="tableData">
+                     Device Code
+                  </th>
+                  <th class="tableData">
+                     Device Type
+                  </th>
+                  <th class="tableData">
+                     Description / Model
+                  </th>
+                  <th class="tableData">
+                     Device Cost(in $)
+                  </th>
+                  <th class="tableData">
+                     Manufactured Date
+                  </th>
+                  <th class="tableData">
+                     Manufacturing Company
+                  </th>
+                  <th class="tableData">
+                     Remarks(If any)
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td class="tableData" id="deviceAddId">
+                  </td>
+                  <td class="tableData" id="deviceCodeId">
+                  </td>
+                  <td class="tableData" id="deviceTypeId">
+                  </td>
+                  <td class="tableData" id="deviceDescId">
+                  </td>
+                  <td class="tableData" id="deviceCostId">
+                  </td>
+                  <td class="tableData" id="deviceManuDatefId">
+                  </td>
+                  <td class="tableData" id="deviceManuCompfId">
+                  </td>
+                  <td class="tableData" id="deviceremarksId">
+                  </td>
+               </tr>
+            </tbody>
+         </table> -->
+		 <div id="popup" hidden="hidden">
+                                <div id="popupTitle"> <center>Details of the device<center> </div> 
+                                 <table id="deviceDataTable">
+      
+               <tr>
+                  <th class="tableData no-border">
+                     Device Address(Owner):
+                  </th>
+                          <td class="tableData" id="deviceAddId">
+                          <label id="deviceAddId1"></label>
+                  </td>
+                  <th class="tableData">
+                     Device Code:
+                  </th>
+                  <td class="tableData" id="deviceCodeId">
+                       <label id="deviceCodeId1"></label>
+                  </td>
+                </tr>
+                 <tr>
+                  <th class="tableData no-border">
+                     Device Type:
+                  </th>     
+                  <td class="tableData" id="deviceTypeId">
+                      <label id="deviceTypeId1"></label>
+                  </td>
+                 <th class="tableData">
+                     Description / Model:
+                  </th>
+                  <td class="tableData" id="deviceDescId">
+                      <label id="deviceDescId1"></label>
+                  </td>
+                                                                </tr>
+                                                                <tr>
+                  <th class="tableData no-border">
+                     Device Cost(in $):
+                  </th>
+                                                                  <td class="tableData" id="deviceCostId">
+                                                                    <label id="deviceCostId1"></label>
+                  </td>
+                                                                    <th class="tableData">
+                     Manufactured Date:
+                  </th>
+                  <td class="tableData" id="deviceManuDatefId">
+                                                                  <label id="deviceManuDatefId1"></label>
+                  </td>
+                                                                </tr>
+                                                                <tr>
+                  <th class="tableData no-border no-border-bottom">
+                     Manufacturing Company:
+                  </th>
+                                                                  <td class="tableData no-border-bottom" id="deviceManuCompfId">
+                                                                   <label id="deviceManuCompfId1"></label>
+                  </td>
+                                                                  <th class="tableData no-border-bottom">
+                     Remarks(If any):
+                  </th>
+                  <td class="tableData no-border-bottom" id="deviceremarksId">
+                                                                   <label id="deviceremarksId1"></label>
+                  </td>
+               </tr>
+           
+         </table>
+      </div>
+      <div id="bottomDiv">
+         <h4>Let's fetch all the events of Medical Device
+         </h4>
+         <div id="eventsGeneratedForSentDevice">
+            <p>Search by Device Code:</p>
+         </div>
+         <div id="bottomInner">
+            <input id='AddForFetchinEvents'>
+            <button id="handleAllMintCoinEventButton"> <label id="buttonTexthandleAllMintCoinEvent">Fetch All Events</label</button>
+         
+		 </div>
+		 
+      </div>
+	
+	  <div id="displayMintCoinEventsPopup" hidden="hidden">
+	    <label id="MintCoinEvents" align="center"></label>
+		<table id="displayMintCoinEventsTable" >
+			 <thead>
+               <tr>
+                  <th class="tableData">
+                     From(Owner Digital address)
+                  </th>
+				  
+				   <th class="tableData">
+                     To(Receiver Digital address)
+                  </th>
+                  <th class="tableData">
+                     Device Code
+                  </th>
+                  <!-- <th class="tableData">
+                     Device Type
+                  </th>
+                  <th class="tableData">
+                     Description / Model
+                  </th>
+                  <th class="tableData">
+                     Device Cost(in $)
+                  </th>
+                  <th class="tableData">
+                     Manufactured Date
+                  </th>
+                  <th class="tableData">
+                     Manufacturing Company
+                  </th>
+                  <th class="tableData">
+                     Remarks(If any)
+                  </th> -->
+               </tr>
+            </thead>
+			 <tbody id="displayMintCoinEventsTableBody">
+			    
+			
+			 </tbody>
+			</table>
+		 </div>
+	  </div>
+      <script type="text/javascript" src='app_device1.js'></script>
+   </body>
+</html>
